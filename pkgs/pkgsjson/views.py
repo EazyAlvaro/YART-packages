@@ -25,32 +25,36 @@ def home(request):
 
 
 
-    txt = txt.replace("\n\n", '[BREAK_TOKEN]')
+    # Since we are converting for web consumption, HTML seems permisable
     txt = txt.replace("\n .\n", '<br><br>')
     txt = txt.replace(" * ", '<li>')
     txt = txt.replace('https:',  '[PROTOCOL_TOKEN]')
+    txt = txt.replace('"', 'ZZZ')
 
     txt = txt.replace("\n ", '')
-    # txt = txt.replace("\n", '')
 
-    # txt = txt.replace("\n", ',')
-
-    # this at least formats the keys correctly, still leaves the values as trash
+    # Format the keys
     txt = re.sub("(\S+): ", r'"\1": ', txt)
 
-    # value part
-    txt = re.sub(r': (\S+.+)', r':"\1"', txt)
-    # txt = re.sub(r': (\S+.+)', r':"REPLACED",\n', txt)
+    # Format the values. I tried putting it all in one regex,
+    # but alas i did something wrong  and this is faster than teaching myself proper regex
+    txt = re.sub(r': (\S+.+)', r': "\1",', txt)
 
-    # txt = txt.replace("\n", '<br>')
-    # txt = txt.replace("[BREAK_TOKEN]", '},\n\n')
 
-    txt = '{\n' + txt + '\n}'
+
+    # begin and end with the approprite curlies and brackets
+    txt = json_enclose(txt)
+
+    # txt = json.encoder(txt)
+
+    # data = json.loads(txt)
+    # txt = json.dumps(data, indent=1)
 
     return HttpResponse(txt)
 
-# deliniate the beginning and end of the package string with '{' and '},'
-def json_encapsulate(txt):
-    return txt.replace('"Package":', "{\"Package\":").replace("\n\n", "\n},\n")
 
-#def json_
+def json_enclose(txt: str) -> str:
+    txt = txt.replace('"Package"', '{"Package"').\
+        replace("\n\n", "\n},\n").\
+        replace(",\n}", "\n}")
+    return '[\n' + txt + '\n]'
