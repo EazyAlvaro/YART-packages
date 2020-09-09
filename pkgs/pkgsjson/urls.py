@@ -1,11 +1,7 @@
 from django.urls import path
-
-
-from django.urls import path
 from . import views
 
-
 urlpatterns = [
-    path('json', views.json, name='app-json'),
-    path('html', views.json, name='app-html'),
+    path('json', views.jsonraw, name='app-json'), #calling it literally 'json' causes packages to not load
+    path('html', views.html, name='app-html'),
 ]

@@ -1,6 +1,15 @@
 # YART-packages
 Yet Another Recruitment Test - Packages
 
+## See it live
+start the local django server `python3 manage.py runserver` inside `pkgs/`
+- http://127.0.0.1:8000/pkgs/json the JSON data
+- http://127.0.0.1:8000/pkgs/html a basic responsive layout with Bootstrap 4
+
+## Known issues
+- The requirement for piped dependencies has not been implemented. I chose to prioritize tests instead.
+- Hyphenated key names are invalid.
+
 
 ### Timelog
 
@@ -10,6 +19,7 @@ Yet Another Recruitment Test - Packages
     then figured out how to read it in a way that closes the file and doesn't cause memory leaks
 - Hour 3: i was always bad at regex, packages like demjson and dirtyjson also didn't work out as hoped
 - Hour 4-5: Worked towards JSON valid output
+- Hour 6-7: refactoring/Crash course in Python OO and templates, refresher on Bootsreap 4
 
 ### External PIP3 packages
 - PyYaml
@@ -68,3 +78,6 @@ Yet Another Recruitment Test - Packages
   }
 ]
 ```
+
+### HTML screenshot
+![](frontend.png)
