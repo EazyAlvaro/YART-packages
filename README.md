@@ -7,8 +7,14 @@ start the local django server `python3 manage.py runserver` inside `pkgs/`
 - http://127.0.0.1:8000/pkgs/html a basic responsive layout with Bootstrap 4
 
 ## Known issues
-- The requirement for piped dependencies has not been implemented. I chose to prioritize tests instead.
-- Hyphenated key names are invalid.
+- The requirement for piped dependencies has not been implemented. 
+    I chose to prioritize tests instead: i prefer shipping a subset of features that is tested, 
+    over shipping anything which is untested.
+- Hyphenated key names are invalid, this became an issue in the template
+- Minor spacing glitches in the Description field
+- The HTML template does not separate visual includes/components in their own little  files, 
+    as this was a Nice-To-Have i didn't prioritize on cleanliness, but merely wanted 
+    to demonstrate a basic conceptual grasp of the material.
 
 
 ### Timelog
@@ -20,6 +26,7 @@ start the local django server `python3 manage.py runserver` inside `pkgs/`
 - Hour 3: i was always bad at regex, packages like demjson and dirtyjson also didn't work out as hoped
 - Hour 4-5: Worked towards JSON valid output
 - Hour 6-7: refactoring/Crash course in Python OO and templates, refresher on Bootsreap 4
+- hour 8: reading up and and trying to implement unittests, emphesis on "trying"
 
 ### External PIP3 packages
 - PyYaml
